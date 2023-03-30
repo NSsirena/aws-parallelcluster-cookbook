@@ -291,3 +291,39 @@ suites:
         - network_interfaces_configuration_script_created
         - network_interfaces_configured
         - multiple_network_interfaces_can_ping_gateway
+  - name: custom_slurm_settings_file_via_s3
+    run_list:
+      - recipe[aws-parallelcluster::add_dependencies]
+      - recipe[aws-parallelcluster-slurm::retrieve_custom_settings_from_s3]
+    verifier:
+      controls:
+        - custom_settings_file_retrieved
+    attributes:
+      dependencies:
+        - recipe:aws-parallelcluster-install::directories
+        - recipe:aws-parallelcluster-install::python
+      cluster:
+        config:
+          Scheduling:
+            SchedulerSettings:
+              # here we are just interested in testing that we can retrieve a file from S3 through S3 protocol
+              CustomSlurmSettingsIncludeFile: 's3://us-east-1-aws-parallelcluster/templates/aws-parallelcluster-2.0.0.cfn.json'
+              LocalPath: '/tmp/custom_slurm_settings_include_slurm.conf'
+  - name: custom_slurm_settings_file_via_https
+    run_list:
+      - recipe[aws-parallelcluster::add_dependencies]
+      - recipe[aws-parallelcluster-slurm::retrieve_custom_settings_from_s3]
+    verifier:
+      controls:
+        - custom_settings_file_retrieved
+    attributes:
+      dependencies:
+        - recipe:aws-parallelcluster-install::directories
+        - recipe:aws-parallelcluster-install::python
+      cluster:
+        config:
+          Scheduling:
+            SchedulerSettings:
+              # here we are just interested in testing that we can retrieve a file from S3 through https protocol
+              CustomSlurmSettingsIncludeFile: 'https://us-east-1-aws-parallelcluster.s3.amazonaws.com/templates/aws-parallelcluster-2.0.0.cfn.json'
+              LocalPath: '/tmp/custom_slurm_settings_include_slurm.conf'
