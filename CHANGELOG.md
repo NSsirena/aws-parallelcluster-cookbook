@@ -29,8 +29,6 @@ This file is used to list changes made in each version of the AWS ParallelCluste
 - Upgrade aws-cfn-bootstrap to version 2.0-24.
 - Set Slurm prolog and epilog configurations to target a directory, /opt/slurm/etc/scripts/prolog.d/ and /opt/slurm/etc/scripts/epilog.d/ respectively.
 - Set Slurm BatchStartTimeout to 3 minutes so to allow max 3 minutes Prolog execution during compute node registration.
-- Upgrade Slurm to version 23.02.1.
-- Upgrade munge to version 0.5.15.
 - Set Slurm default `TreeWidth` to 30.
 
 **BUG FIXES**

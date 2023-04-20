@@ -1,4 +1,4 @@
 # Slurm
-default['cluster']['slurm']['version'] = '23-02-1-1'
+default['cluster']['slurm']['version'] = '22-05-8-1'
 # Munge
-default['cluster']['munge']['munge_version'] = '0.5.15'
+default['cluster']['munge']['munge_version'] = '0.5.14'
