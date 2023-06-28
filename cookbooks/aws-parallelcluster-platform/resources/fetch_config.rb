@@ -31,16 +31,19 @@ action :run do
       share_config_with_login_nodes
     end
 
+    # load cluster config into a node object
+    load_cluster_config(node['cluster']['cluster_config_path'])
   when 'ComputeFleet'
     raise "Cluster config not found in #{node['cluster']['cluster_config_path']}" unless ::File.exist?(node['cluster']['cluster_config_path'])
+    # load cluster config into a node object
+    load_cluster_config(node['cluster']['cluster_config_path'])
   when 'LoginNode'
     raise "Cluster config not found in #{node['cluster']['login_cluster_config_path']}" unless ::File.exist?(node['cluster']['login_cluster_config_path'])
+    # load cluster config into a node object
+    load_cluster_config(node['cluster']['login_cluster_config_path'])
   else
     raise "node_type must be HeadNode, LoginNode or ComputeFleet"
   end
-
-  # For all node-types load cluster config into a node object
-  load_cluster_config
 end
 
 action_class do # rubocop:disable Metrics/BlockLength
