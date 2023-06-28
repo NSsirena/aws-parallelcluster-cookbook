@@ -20,6 +20,8 @@ default['cluster']['system_pyenv_root'] = "#{node['cluster']['base_dir']}/pyenv"
 
 default['cluster']['cluster_config_path'] = "#{node['cluster']['shared_dir']}/cluster-config.yaml"
 default['cluster']['previous_cluster_config_path'] = "#{node['cluster']['shared_dir']}/previous-cluster-config.yaml"
+default['cluster']['login_cluster_config_path'] = "#{node['cluster']['shared_login_nodes_dir']}/cluster-config.yaml"
+default['cluster']['login_previous_cluster_config_path'] = "#{node['cluster']['shared_login_nodes_dir']}/previous-cluster-config.yaml"
 default['cluster']['change_set_path'] = "#{node['cluster']['shared_dir']}/change-set.json"
 default['cluster']['instance_types_data_path'] = "#{node['cluster']['shared_dir']}/instance-types-data.json"
 
