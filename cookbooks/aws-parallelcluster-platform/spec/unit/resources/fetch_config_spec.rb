@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'fetch_config:run' do
   context "when running from kitchen" do
     cached(:cluster_config_path) { 'cluster_config_path' }
+    cached(:previous_cluster_config_path) { 'previous_cluster_config_path' }
     cached(:instance_types_data_path) { 'instance_types_data_path' }
     cached(:chef_run) do
       runner = ChefSpec::Runner.new(
@@ -10,7 +11,9 @@ describe 'fetch_config:run' do
       ) do |node|
         node.override['kitchen'] = true
         node.override['cluster']['cluster_config_path'] = cluster_config_path
+        node.override['cluster']['previous_cluster_config_path'] = previous_cluster_config_path
         node.override['cluster']['instance_types_data_path'] = instance_types_data_path
+        node.override['cluster']['node_type'] = 'HeadNode'
       end
       runner.converge_dsl do
         fetch_config 'run' do
