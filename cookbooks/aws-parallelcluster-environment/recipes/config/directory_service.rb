@@ -251,3 +251,10 @@ end
     sensitive true
   end
 end unless on_docker?
+
+if %w(HeadNode LoginNode).include? node['cluster']['node_type']
+  execute 'Force DB sync with remote directory service' do
+    command "getent passwd ReadOnlyUser"
+    user 'root'
+  end
+end
