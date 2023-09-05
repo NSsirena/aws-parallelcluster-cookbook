@@ -48,6 +48,8 @@ if node['cluster']['scheduler'] == 'slurm'
     parallelcluster_compute_console_output_log_rotation
     parallelcluster_clustermgtd_events_log_rotation
     parallelcluster_slurm_resume_events_log_rotation
+    parallelcluster_job_info_log_rotation
+    parallelcluster_job_info_events_log_rotation
   )
 end
 
