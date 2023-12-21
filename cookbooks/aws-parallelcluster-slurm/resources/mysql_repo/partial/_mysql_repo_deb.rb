@@ -23,6 +23,7 @@ action :add do
 
   apt_update 'update' do
     action :update
+    ignore_failure true
     retries 3
     retry_delay 5
   end
