@@ -23,5 +23,5 @@ def md5_signature
 end
 
 def file_name
-  'mysql-apt-config_0.8.26-1_all.deb'
+  'mysql-apt-config_0.8.29-1_all.deb'
 end
